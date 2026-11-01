@@ -17,12 +17,15 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update -q && sudo apt-get install -y -q tesseract-ocr
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --locked
+      - run: tesseract --version
       - run: uv run pytest -q
+        timeout-minutes: 5
       # Fails (and GitHub emails you) if the PDF can't be read cleanly; the feed is then left as it was.
       - run: uv run getpoolcal ics
       - name: Commit changes

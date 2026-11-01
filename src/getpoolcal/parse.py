@@ -8,6 +8,7 @@ a row of dates ("23-Sep"), then one row per match slot with cells like "1-14"
 from __future__ import annotations
 
 import io
+import os
 import re
 import shutil
 import subprocess
@@ -67,7 +68,12 @@ def _tesseract(img: Image.Image, psm: int, whitelist: str | None = None) -> str:
     cmd = ["tesseract", "stdin", "stdout", "--psm", str(psm)]
     if whitelist:
         cmd += ["-c", f"tessedit_char_whitelist={whitelist}"]
-    return subprocess.run(cmd, input=buf.getvalue(), capture_output=True, check=True).stdout.decode().strip()
+    # Cells are read in parallel, so keep each tesseract single-threaded: OpenMP builds
+    # (e.g. Ubuntu's) otherwise oversubscribe the CPUs and slow to a crawl.
+    env = {**os.environ, "OMP_THREAD_LIMIT": "1"}
+    return subprocess.run(
+        cmd, input=buf.getvalue(), capture_output=True, check=True, env=env, timeout=60
+    ).stdout.decode().strip()
 
 
 def _line_positions(frac: np.ndarray, threshold: float) -> list[int]:
