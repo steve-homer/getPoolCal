@@ -1,0 +1,17 @@
+# Settings for getpoolcal (committed: nothing in here is secret).
+
+# Page that links to the fixture PDF, and a regex picking the PDF link.
+page_url = "https://yarmpoolleague.co.uk/fixture-list/"
+pdf_link_pattern = "fixture"
+
+# Your team: its name or number in the fixture key.
+team = "Oxbridge"
+title_prefix = "Pool"
+
+# Feed name shown in calendar apps, and the time zone it declares.
+calendar_name = "Pool League"
+time_zone = "Europe/London"
+
+# Every event published so far (kept across PDFs), and the published feed.
+store = "data/events.json"
+feed = "docs/pool.ics"

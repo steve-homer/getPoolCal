@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Pool: Oxbridge v Eagle \"B\" (home)",
+    "start": "2026-09-23T00:00:00",
+    "end": "2026-09-24T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 1",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Market Tavern v Oxbridge (away)",
+    "start": "2026-09-30T00:00:00",
+    "end": "2026-10-01T00:00:00",
+    "location": "Market Tavern",
+    "notes": "Yarm Pool League week 2",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Roseworth Rockets (home)",
+    "start": "2026-10-07T00:00:00",
+    "end": "2026-10-08T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 3",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Room 21 LOS Compeones v Oxbridge (away)",
+    "start": "2026-10-14T00:00:00",
+    "end": "2026-10-15T00:00:00",
+    "location": "Room 21 LOS Compeones",
+    "notes": "Yarm Pool League week 4",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Elmtree (home)",
+    "start": "2026-10-21T00:00:00",
+    "end": "2026-10-22T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 5",
+    "all_day": true
+  },
+  {
+    "title": "Pool: The Griffin v Oxbridge (away)",
+    "start": "2026-10-28T00:00:00",
+    "end": "2026-10-29T00:00:00",
+    "location": "The Griffin",
+    "notes": "Yarm Pool League week 6",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Roseworth \"A\" (home)",
+    "start": "2026-11-04T00:00:00",
+    "end": "2026-11-05T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 7",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Thomas Brown \"A\" (home)",
+    "start": "2026-11-11T00:00:00",
+    "end": "2026-11-12T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 8",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Roseworth Lions v Oxbridge (away)",
+    "start": "2026-11-18T00:00:00",
+    "end": "2026-11-19T00:00:00",
+    "location": "Roseworth Lions",
+    "notes": "Yarm Pool League week 9",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Beckfields v Oxbridge (away)",
+    "start": "2026-11-25T00:00:00",
+    "end": "2026-11-26T00:00:00",
+    "location": "Beckfields",
+    "notes": "Yarm Pool League week 10",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Eagle \"A\" (home)",
+    "start": "2026-12-02T00:00:00",
+    "end": "2026-12-03T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 11",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Thomas Brown The Lost Boys v Oxbridge (away)",
+    "start": "2026-12-09T00:00:00",
+    "end": "2026-12-10T00:00:00",
+    "location": "Thomas Brown The Lost Boys",
+    "notes": "Yarm Pool League week 12",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Union (home)",
+    "start": "2026-12-16T00:00:00",
+    "end": "2026-12-17T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 13",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Tables v Oxbridge (away)",
+    "start": "2027-01-06T00:00:00",
+    "end": "2027-01-07T00:00:00",
+    "location": "Tables",
+    "notes": "Yarm Pool League week 16",
+    "all_day": true
+  },
+  {
+    "title": "Pool: Oxbridge v Locomotion (home)",
+    "start": "2027-01-13T00:00:00",
+    "end": "2027-01-14T00:00:00",
+    "location": "Oxbridge",
+    "notes": "Yarm Pool League week 17",
+    "all_day": true
+  }
+]

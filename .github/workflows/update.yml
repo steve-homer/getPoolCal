@@ -1,0 +1,35 @@
+name: Update fixture feed
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"  # Mondays 06:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -q && sudo apt-get install -y -q tesseract-ocr
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - run: uv run pytest -q
+      # Fails (and GitHub emails you) if the PDF can't be read cleanly; the feed is then left as it was.
+      - run: uv run getpoolcal ics
+      - name: Commit changes
+        run: |
+          git add data docs
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update fixture feed"
+          git push

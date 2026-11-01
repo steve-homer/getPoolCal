@@ -1,0 +1,12 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pool League Fixtures</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;max-width:40rem;margin:2rem auto;padding:0 16px;background:#fff;color:#222}code{background:#f2f2f2;padding:2px 4px;word-break:break-all}</style>
+<h1>Pool League Fixtures</h1>
+<p>Oxbridge's Yarm Pool League fixtures as a calendar feed, refreshed weekly from the
+<a href="https://yarmpoolleague.co.uk/fixture-list/">league's fixture list</a>.</p>
+<p>Subscribe with this URL: <code id="u">pool.ics</code></p>
+<p>Outlook: Calendar → Add calendar → Subscribe from web. Google Calendar: Other calendars → + → From URL.
+Apple Calendar: File → New Calendar Subscription.</p>
+<script>document.getElementById("u").textContent=new URL("pool.ics",location.href).href</script>
