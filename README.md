@@ -22,7 +22,10 @@ A Linux server runs `run` weekly from a systemd timer (see
 
 The GitHub Action only runs the tests on each push.
 
-Each fixture is an all-day event such as `Pool: Oxbridge v Eagle "B" (home)`.
+Each fixture is an all-day event such as `Pool: Oxbridge v Eagle "B" (home)`,
+whose description lists that week's other matches. A week in which the team
+has no match (including a week off for the whole league) gets an all-day
+`Pool: No Oxbridge Match` event listing the week's matches instead.
 In a cell like `6-9` the first team is taken as the home team, and its name is
 used as the location. A PDF covers part of a season, so a new PDF replaces
 only the events within the dates it covers and earlier fixtures stay in the feed.

@@ -36,14 +36,29 @@ def test_parse_match():
 
 
 def test_team_events():
-    s = Schedule({1: "Beckfields", 6: "Oxbridge", 9: 'Eagle "B"'},
-                 [Fixture(1, date(2026, 9, 23), 6, 9), Fixture(2, date(2026, 9, 30), 1, 6), Fixture(2, date(2026, 9, 30), 9, 2)], [])
+    s = Schedule({1: "Beckfields", 2: "Eagle \"A\"", 6: "Oxbridge", 9: 'Eagle "B"'},
+                 [Fixture(1, date(2026, 9, 23), 6, 9), Fixture(1, date(2026, 9, 23), 1, 2),
+                  Fixture(2, date(2026, 9, 30), 1, 6), Fixture(2, date(2026, 9, 30), 9, 2),
+                  Fixture(4, date(2026, 10, 14), 9, 1)],
+                 [], {1: date(2026, 9, 23), 2: date(2026, 9, 30), 3: date(2026, 10, 7), 4: date(2026, 10, 14)})
     evs = team_events(s, "oxbridge")
-    assert [e.title for e in evs] == ['Pool: Oxbridge v Eagle "B" (home)', "Pool: Beckfields v Oxbridge (away)"]
+    assert [e.title for e in evs] == ['Pool: Oxbridge v Eagle "B" (home)', "Pool: Beckfields v Oxbridge (away)",
+                                      "Pool: No Oxbridge Match", "Pool: No Oxbridge Match"]
+    assert [e.start.date() for e in evs] == [date(2026, 9, 23), date(2026, 9, 30), date(2026, 10, 7), date(2026, 10, 14)]
     assert evs[1].location == "Beckfields" and evs[1].all_day
+    assert evs[2].location == "" and evs[2].all_day
     assert (evs[0].end - evs[0].start).days == 1
+    assert evs[0].notes == 'Yarm Pool League week 1\n\nOther matches:\nBeckfields v Eagle "A"'
+    assert evs[1].notes == 'Yarm Pool League week 2\n\nOther matches:\nEagle "B" v Eagle "A"'
+    assert evs[2].notes == "Yarm Pool League week 3\n\nNo league matches this week."
+    assert evs[3].notes == 'Yarm Pool League week 4\n\nMatches:\nEagle "B" v Beckfields'
     with pytest.raises(ParseError):
         team_events(s, "Nobody")
+
+
+def test_team_events_without_week_list():
+    s = Schedule({1: "Beckfields", 6: "Oxbridge"}, [Fixture(1, date(2026, 9, 23), 6, 1)], [])
+    assert [e.title for e in team_events(s, "Oxbridge")] == ["Pool: Oxbridge v Beckfields (home)"]
 
 
 @pytest.mark.skipif(not shutil.which("tesseract"), reason="tesseract not installed")
@@ -55,3 +70,4 @@ def test_real_pdf():
     assert got == expected
     assert s.teams[6] == "Oxbridge" and len(s.teams) == 16
     assert s.fixtures[0].day == date(2026, 9, 23) and s.fixtures[-1].day == date(2027, 1, 13)
+    assert len(s.weeks) == 17 and s.weeks[14] == date(2026, 12, 23) and s.weeks[15] == date(2026, 12, 30)

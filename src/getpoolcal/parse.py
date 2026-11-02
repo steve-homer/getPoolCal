@@ -14,7 +14,7 @@ import shutil
 import subprocess
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 
 import numpy as np
@@ -52,6 +52,7 @@ class Schedule:
     teams: dict[int, str]
     fixtures: list[Fixture]
     grid: list[list[str]]  # raw cell readings, for `getpoolcal dump`
+    weeks: dict[int, date] = field(default_factory=dict)  # every week in the PDF, weeks off included
 
     def name(self, n: int) -> str:
         return self.teams.get(n, f"Team {n}")
@@ -182,6 +183,7 @@ def parse_schedule(data: bytes) -> Schedule:
     teams = read_teams(img, table_bottom)
 
     fixtures: list[Fixture] = []
+    weeks: dict[int, date] = {}
     problems: list[str] = []
     first_month = None
     prev_day = None
@@ -192,6 +194,7 @@ def parse_schedule(data: bytes) -> Schedule:
         if prev_day and (day - prev_day).days % 7:
             problems.append(f"week {week}: {day} is not a whole number of weeks after {prev_day}")
         prev_day = day
+        weeks[week] = day
         matches = [m for m in (_parse_match(grid[ri][ci]) for ri in range(2, len(grid))) if m]
         if not matches:
             continue  # a week off (N/A)
@@ -209,7 +212,7 @@ def parse_schedule(data: bytes) -> Schedule:
         problems.append(f"fixtures mention unknown team numbers {bad}")
     if problems:
         raise ParseError("The fixture grid did not read cleanly:\n  " + "\n  ".join(problems))
-    return Schedule(teams, fixtures, grid)
+    return Schedule(teams, fixtures, grid, weeks)
 
 
 def team_number(schedule: Schedule, team: str) -> int:
@@ -223,21 +226,31 @@ def team_number(schedule: Schedule, team: str) -> int:
 
 
 def team_events(schedule: Schedule, team: str, prefix: str = "Pool") -> list[Event]:
-    """All-day events for one team's fixtures; the first-listed (home) team's venue is the location."""
+    """One all-day event per week of the PDF for one team.
+
+    A week the team plays is "<prefix>: Home v Away (home|away)", located at the
+    first-listed (home) team's venue. A week it doesn't, including a week off
+    for the whole league, is "<prefix>: No <team> Match". Each event's
+    description lists the week's other matches.
+    """
     me = team_number(schedule, team)
+    weeks = schedule.weeks or {f.week: f.day for f in schedule.fixtures}
     events = []
-    for f in schedule.fixtures:
-        if me not in (f.home, f.away):
-            continue
-        home, away = schedule.name(f.home), schedule.name(f.away)
-        side = "home" if f.home == me else "away"
-        start = datetime(f.day.year, f.day.month, f.day.day)
-        events.append(Event(
-            title=f"{prefix}: {home} v {away} ({side})",
-            start=start,
-            end=start + timedelta(days=1),
-            location=home,
-            notes=f"Yarm Pool League week {f.week}",
-            all_day=True,
-        ))
+    for week, day in sorted(weeks.items()):
+        fixtures = [f for f in schedule.fixtures if f.week == week]
+        mine = next((f for f in fixtures if me in (f.home, f.away)), None)
+        others = [f"{schedule.name(f.home)} v {schedule.name(f.away)}" for f in fixtures if f is not mine]
+        notes = f"Yarm Pool League week {week}\n\n"
+        if others:
+            notes += ("Other matches:\n" if mine else "Matches:\n") + "\n".join(others)
+        else:
+            notes += "No league matches this week."
+        start = datetime(day.year, day.month, day.day)
+        if mine:
+            home = schedule.name(mine.home)
+            side = "home" if mine.home == me else "away"
+            title, location = f"{prefix}: {home} v {schedule.name(mine.away)} ({side})", home
+        else:
+            title, location = f"{prefix}: No {schedule.name(me)} Match", ""
+        events.append(Event(title, start, start + timedelta(days=1), location, notes, all_day=True))
     return events
