@@ -15,7 +15,10 @@ DTEND;VALUE=DATE:20260924
 SUMMARY:Pool: Oxbridge v Eagle "B" (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 1
+DESCRIPTION:Yarm Pool League week 1\n\nOther matches:\nBeckfields v Thomas 
+ Brown The Lost Boys\nEagle "A" v Locomotion\nRoseworth Lions v Tables\nTho
+ mas Brown "A" v Roseworth Rockets\nRoseworth "A" v Market Tavern\nElmtree 
+ v Room 21 LOS Compeones\nUnion v The Griffin
 END:VEVENT
 BEGIN:VEVENT
 UID:abe9a94b279a81a644bf2dc8@getpoolcal
@@ -25,7 +28,10 @@ DTEND;VALUE=DATE:20261001
 SUMMARY:Pool: Market Tavern v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:Market Tavern
-DESCRIPTION:Yarm Pool League week 2
+DESCRIPTION:Yarm Pool League week 2\n\nOther matches:\nUnion v Beckfields\n
+ Thomas Brown The Lost Boys v Eagle "A"\nLocomotion v Roseworth Lions\nTabl
+ es v Thomas Brown "A"\nRoseworth Rockets v Roseworth "A"\nEagle "B" v Elmt
+ ree\nThe Griffin v Room 21 LOS Compeones
 END:VEVENT
 BEGIN:VEVENT
 UID:d3aa8215a53ac750b0d09346@getpoolcal
@@ -35,7 +41,10 @@ DTEND;VALUE=DATE:20261008
 SUMMARY:Pool: Oxbridge v Roseworth Rockets (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 3
+DESCRIPTION:Yarm Pool League week 3\n\nOther matches:\nBeckfields v The Gri
+ ffin\nEagle "A" v Union\nRoseworth Lions v Thomas Brown The Lost Boys\nTho
+ mas Brown "A" v Locomotion\nRoseworth "A" v Tables\nElmtree v Market Taver
+ n\nRoom 21 LOS Compeones v Eagle "B"
 END:VEVENT
 BEGIN:VEVENT
 UID:eed6688d0dbdd26cf59edfd0@getpoolcal
@@ -45,7 +54,10 @@ DTEND;VALUE=DATE:20261015
 SUMMARY:Pool: Room 21 LOS Compeones v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:Room 21 LOS Compeones
-DESCRIPTION:Yarm Pool League week 4
+DESCRIPTION:Yarm Pool League week 4\n\nOther matches:\nLocomotion v Beckfie
+ lds\nTables v Eagle "A"\nRoseworth Rockets v Roseworth Lions\nMarket Taver
+ n v Thomas Brown "A"\nEagle "B" v Roseworth "A"\nThe Griffin v Elmtree\nTh
+ omas Brown The Lost Boys v Union
 END:VEVENT
 BEGIN:VEVENT
 UID:fe0fcfab7e25edeeedae046e@getpoolcal
@@ -55,7 +67,10 @@ DTEND;VALUE=DATE:20261022
 SUMMARY:Pool: Oxbridge v Elmtree (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 5
+DESCRIPTION:Yarm Pool League week 5\n\nOther matches:\nBeckfields v Tables\
+ nEagle "A" v Roseworth Rockets\nRoseworth Lions v Market Tavern\nThomas Br
+ own "A" v Eagle "B"\nRoseworth "A" v Room 21 LOS Compeones\nThe Griffin v 
+ Thomas Brown The Lost Boys\nUnion v Locomotion
 END:VEVENT
 BEGIN:VEVENT
 UID:2d5d70288117e5a61a34d23f@getpoolcal
@@ -65,7 +80,10 @@ DTEND;VALUE=DATE:20261029
 SUMMARY:Pool: The Griffin v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:The Griffin
-DESCRIPTION:Yarm Pool League week 6
+DESCRIPTION:Yarm Pool League week 6\n\nOther matches:\nRoseworth Rockets v 
+ Beckfields\nMarket Tavern v Eagle "A"\nEagle "B" v Roseworth Lions\nRoom 2
+ 1 LOS Compeones v Thomas Brown "A"\nElmtree v Roseworth "A"\nThomas Brown 
+ The Lost Boys v Locomotion\nTables v Union
 END:VEVENT
 BEGIN:VEVENT
 UID:8f39dfc86e736aedd6eba5a7@getpoolcal
@@ -75,7 +93,10 @@ DTEND;VALUE=DATE:20261105
 SUMMARY:Pool: Oxbridge v Roseworth "A" (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 7
+DESCRIPTION:Yarm Pool League week 7\n\nOther matches:\nBeckfields v Market 
+ Tavern\nEagle "A" v Eagle "B"\nRoseworth Lions v Room 21 LOS Compeones\nTh
+ omas Brown "A" v Elmtree\nLocomotion v The Griffin\nTables v Thomas Brown 
+ The Lost Boys\nUnion v Roseworth Rockets
 END:VEVENT
 BEGIN:VEVENT
 UID:f8987ce1ff02795bf7b4f9c9@getpoolcal
@@ -85,7 +106,10 @@ DTEND;VALUE=DATE:20261112
 SUMMARY:Pool: Oxbridge v Thomas Brown "A" (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 8
+DESCRIPTION:Yarm Pool League week 8\n\nOther matches:\nEagle "B" v Beckfiel
+ ds\nRoom 21 LOS Compeones v Eagle "A"\nElmtree v Roseworth Lions\nRosewort
+ h "A" v The Griffin\nTables v Locomotion\nThomas Brown The Lost Boys v Ros
+ eworth Rockets\nMarket Tavern v Union
 END:VEVENT
 BEGIN:VEVENT
 UID:cffb08860e9f1c42dec290de@getpoolcal
@@ -95,7 +119,10 @@ DTEND;VALUE=DATE:20261119
 SUMMARY:Pool: Roseworth Lions v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:Roseworth Lions
-DESCRIPTION:Yarm Pool League week 9
+DESCRIPTION:Yarm Pool League week 9\n\nOther matches:\nBeckfields v Room 21
+  LOS Compeones\nEagle "A" v Elmtree\nThomas Brown "A" v Roseworth "A"\nThe
+  Griffin v Tables\nLocomotion v Roseworth Rockets\nMarket Tavern v Thomas 
+ Brown The Lost Boys\nUnion v Eagle "B"
 END:VEVENT
 BEGIN:VEVENT
 UID:4bf942e8a1acb162d90ac2ad@getpoolcal
@@ -105,7 +132,10 @@ DTEND;VALUE=DATE:20261126
 SUMMARY:Pool: Beckfields v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:Beckfields
-DESCRIPTION:Yarm Pool League week 10
+DESCRIPTION:Yarm Pool League week 10\n\nOther matches:\nEagle "A" v Rosewor
+ th "A"\nRoseworth Lions v Thomas Brown "A"\nRoseworth Rockets v The Griffi
+ n\nTables v Market Tavern\nLocomotion v Eagle "B"\nThomas Brown The Lost B
+ oys v Room 21 LOS Compeones\nUnion v Elmtree
 END:VEVENT
 BEGIN:VEVENT
 UID:5106c9004c9269d0fb3badda@getpoolcal
@@ -115,7 +145,10 @@ DTEND;VALUE=DATE:20261203
 SUMMARY:Pool: Oxbridge v Eagle "A" (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 11
+DESCRIPTION:Yarm Pool League week 11\n\nOther matches:\nElmtree v Beckfield
+ s\nRoseworth "A" v Roseworth Lions\nThomas Brown "A" v The Griffin\nRosewo
+ rth Rockets v Tables\nMarket Tavern v Locomotion\nEagle "B" v Thomas Brown
+  The Lost Boys\nRoom 21 LOS Compeones v Union
 END:VEVENT
 BEGIN:VEVENT
 UID:23b3ebe8b255a7a8aae3e4e9@getpoolcal
@@ -125,7 +158,10 @@ DTEND;VALUE=DATE:20261210
 SUMMARY:Pool: Thomas Brown The Lost Boys v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:Thomas Brown The Lost Boys
-DESCRIPTION:Yarm Pool League week 12
+DESCRIPTION:Yarm Pool League week 12\n\nOther matches:\nBeckfields v Thomas
+  Brown "A"\nEagle "A" v Roseworth Lions\nMarket Tavern v The Griffin\nRose
+ worth Rockets v Eagle "B"\nTables v Room 21 LOS Compeones\nLocomotion v El
+ mtree\nUnion v Roseworth "A"
 END:VEVENT
 BEGIN:VEVENT
 UID:f2db9216996cc463421ee6bc@getpoolcal
@@ -135,7 +171,28 @@ DTEND;VALUE=DATE:20261217
 SUMMARY:Pool: Oxbridge v Union (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 13
+DESCRIPTION:Yarm Pool League week 13\n\nOther matches:\nRoseworth "A" v Bec
+ kfields\nThomas Brown "A" v Eagle "A"\nThe Griffin v Roseworth Lions\nMark
+ et Tavern v Roseworth Rockets\nEagle "B" v Tables\nRoom 21 LOS Compeones v
+  Locomotion\nElmtree v Thomas Brown The Lost Boys
+END:VEVENT
+BEGIN:VEVENT
+UID:c54750c83a3f97106e21ba5e@getpoolcal
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+SUMMARY:Pool: No Oxbridge Match
+TRANSP:TRANSPARENT
+DESCRIPTION:Yarm Pool League week 14\n\nNo league matches this week.
+END:VEVENT
+BEGIN:VEVENT
+UID:76e150ffa710ef6cba3afa8b@getpoolcal
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261230
+DTEND;VALUE=DATE:20261231
+SUMMARY:Pool: No Oxbridge Match
+TRANSP:TRANSPARENT
+DESCRIPTION:Yarm Pool League week 15\n\nNo league matches this week.
 END:VEVENT
 BEGIN:VEVENT
 UID:0637b27b1b838cec87f49125@getpoolcal
@@ -145,7 +202,10 @@ DTEND;VALUE=DATE:20270107
 SUMMARY:Pool: Tables v Oxbridge (away)
 TRANSP:TRANSPARENT
 LOCATION:Tables
-DESCRIPTION:Yarm Pool League week 16
+DESCRIPTION:Yarm Pool League week 16\n\nOther matches:\nBeckfields v Eagle 
+ "A"\nEagle "B" v The Griffin\nMarket Tavern v Room 21 LOS Compeones\nRosew
+ orth Rockets v Elmtree\nLocomotion v Roseworth "A"\nThomas Brown The Lost 
+ Boys v Thomas Brown "A"\nUnion v Roseworth Lions
 END:VEVENT
 BEGIN:VEVENT
 UID:3f914a7ced21e87afab84477@getpoolcal
@@ -155,6 +215,9 @@ DTEND;VALUE=DATE:20270114
 SUMMARY:Pool: Oxbridge v Locomotion (home)
 TRANSP:TRANSPARENT
 LOCATION:Oxbridge
-DESCRIPTION:Yarm Pool League week 17
+DESCRIPTION:Yarm Pool League week 17\n\nOther matches:\nRoseworth Lions v B
+ eckfields\nThe Griffin v Eagle "A"\nEagle "B" v Market Tavern\nRoom 21 LOS
+  Compeones v Roseworth Rockets\nElmtree v Tables\nRoseworth "A" v Thomas B
+ rown The Lost Boys\nThomas Brown "A" v Union
 END:VEVENT
 END:VCALENDAR
