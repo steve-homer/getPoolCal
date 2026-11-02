@@ -1,0 +1,59 @@
+#!/bin/bash
+# Weekly feed update, run by job@getpoolcal.service on the jobs server (see /srv/jobs/README.md).
+#
+#   1. update this checkout to the latest origin/main;
+#   2. regenerate the feed, keeping the event store in $STATE_DIRECTORY so it
+#      persists across runs and git pulls (seeded from data/events.json on first run);
+#   3. publish pool.ics and index.html to $WWW_DIR;
+#   4. commit both to the repo and push, so GitHub Pages serves them too.
+#
+#   STATE_DIRECTORY  persistent data (set by systemd; default ~/.local/state/getpoolcal)
+#   WWW_DIR          web root to publish to (default /srv/www/getpoolcal)
+#   DEPLOY_KEY       SSH key with write access to the repo (default ~/.ssh/getpoolcal_deploy)
+#   PUSH=0           skip step 4
+set -euo pipefail
+
+STATE=${STATE_DIRECTORY:-$HOME/.local/state/getpoolcal}
+WWW=${WWW_DIR:-/srv/www/getpoolcal}
+DEPLOY_KEY=${DEPLOY_KEY:-$HOME/.ssh/getpoolcal_deploy}
+PUSH_URL=git@github.com:steve-homer/getPoolCal.git
+BRANCH=main
+
+cd "$(dirname "$(readlink -f "$0")")"
+mkdir -p "$STATE" "$WWW"
+
+# 1. Latest code. This checkout is deploy-only, so local changes are discarded.
+git fetch -q origin "$BRANCH"
+git reset -q --hard "origin/$BRANCH"
+
+# 2. Regenerate, with the store and feed pointed at the state directory.
+[[ -f $STATE/events.json ]] || cp data/events.json "$STATE/events.json"
+{
+    grep -vE '^[[:space:]]*(store|feed)[[:space:]]*=' config.toml
+    echo "store = \"$STATE/events.json\""
+    echo "feed = \"$STATE/pool.ics\""
+} >"$STATE/config.toml"
+uv run --locked --no-dev getpoolcal --config "$STATE/config.toml" ics
+
+# 3. Publish locally (copy then rename, so readers never see a half-written file).
+for f in "$STATE/pool.ics" docs/index.html; do
+    install -m 644 "$f" "$WWW/.$(basename "$f").tmp"
+    mv -f "$WWW/.$(basename "$f").tmp" "$WWW/$(basename "$f")"
+done
+echo "Published to $WWW"
+
+# 4. GitHub Pages.
+[[ ${PUSH:-1} == 1 ]] || { echo "PUSH=0: not pushing to GitHub"; exit 0; }
+cp "$STATE/events.json" data/events.json
+cp "$STATE/pool.ics" docs/pool.ics
+git add data/events.json docs/pool.ics
+if git diff --cached --quiet; then
+    echo "GitHub copy already up to date"
+    exit 0
+fi
+[[ -r $DEPLOY_KEY ]] || { echo "Deploy key $DEPLOY_KEY not found; cannot push" >&2; exit 1; }
+git -c user.name="getpoolcal" -c user.email="13299892+steve-homer@users.noreply.github.com" \
+    commit -q -m "Update fixture feed"
+GIT_SSH_COMMAND="ssh -i $DEPLOY_KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$PWD/deploy/github_known_hosts" \
+    git push -q "$PUSH_URL" "HEAD:$BRANCH"
+echo "Pushed updated feed to GitHub Pages"

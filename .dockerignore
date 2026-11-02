@@ -1,5 +1,0 @@
-*
-!pyproject.toml
-!uv.lock
-!deploy/run.sh
-!deploy/github_known_hosts

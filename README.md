@@ -4,8 +4,8 @@ Publishes Oxbridge's Yarm Pool League fixtures as a calendar feed
 (`docs/pool.ics`, served by GitHub Pages) that Outlook, Google Calendar or
 Apple Calendar can subscribe to.
 
-A Docker container on a Linux server (`Dockerfile`, `deploy/`) runs weekly
-from a systemd timer. Each run:
+A Linux server runs `run` weekly from a systemd timer (see
+[Server setup](#server-setup)). Each run:
 
 1. pulls the latest `main` of this repo;
 2. finds the fixture PDF on <https://yarmpoolleague.co.uk/fixture-list/>;
@@ -14,9 +14,11 @@ from a systemd timer. Each run:
    several preprocessing passes and the majority reading wins;
 4. checks the result (dates a week apart, every team at most once per week,
    a full 1..16 team key) and fails without touching the feed if any check fails;
-5. merges the team's fixtures into `data/events.json`, rewrites
-   `docs/pool.ics`, and commits and pushes (with a deploy key) only if
-   something changed. GitHub Pages then serves the new feed.
+5. merges the team's fixtures into the event store, rewrites the feed and
+   copies `pool.ics` and `index.html` to the server's web root;
+6. copies the store and feed to `data/events.json` and `docs/pool.ics`, and
+   commits and pushes (with a deploy key) only if something changed.
+   GitHub Pages then serves the new feed.
 
 The GitHub Action only runs the tests on each push.
 
@@ -35,18 +37,27 @@ calendars every few hours, so changes can take a while to appear.
 
 ## Server setup
 
+The server follows the `/srv/jobs` convention: an unprivileged `jobs` user,
+uv, user-level systemd units, and Caddy serving `/srv/www`. Needs the
+`tesseract-ocr` apt package.
+
 ```sh
-git clone https://github.com/steve-homer/getPoolCal.git && cd getPoolCal
-sudo docker build -t getpoolcal:latest .
-sudo mkdir -p /etc/getpoolcal
-sudo ssh-keygen -t ed25519 -N "" -f /etc/getpoolcal/deploy_key   # add the .pub as a deploy key with write access
-sudo chown 1000:1000 /etc/getpoolcal/deploy_key
-sudo cp deploy/getpoolcal.service deploy/getpoolcal.timer /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable --now getpoolcal.timer
+sudo apt-get install tesseract-ocr
+# as jobs:
+ssh-keygen -t ed25519 -N "" -f ~/.ssh/getpoolcal_deploy   # add the .pub as a deploy key with write access
+/srv/jobs/new-job getpoolcal https://github.com/steve-homer/getPoolCal.git "Mon *-*-* 06:15"
+systemctl --user start job@getpoolcal && journalctl --user -u job@getpoolcal -e
 ```
 
-`deploy/run.sh` (the container's entrypoint) takes `REPO`, `BRANCH`,
-`DEPLOY_KEY` and `NO_PUSH=1` environment variables.
+`run` keeps the event store in `$STATE_DIRECTORY` (`~/.local/state/getpoolcal`,
+seeded from `data/events.json` on the first run), because it accumulates fixtures
+across PDFs and must survive the `git reset` at the start of each run. It writes
+a copy of `config.toml` there with `store` and `feed` pointing into that directory.
+
+Environment: `WWW_DIR` (default `/srv/www/getpoolcal`), `DEPLOY_KEY` (default
+`~/.ssh/getpoolcal_deploy`), `PUSH=0` to skip committing and pushing to GitHub.
+`deploy/github_known_hosts` holds GitHub's published SSH host keys, so pushes
+verify the host.
 
 ## Running locally
 
